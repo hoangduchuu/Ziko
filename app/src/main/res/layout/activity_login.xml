@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgBgHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:gravity="bottom|center_horizontal">
+
+            <vn.zikoteam.ziko.customui.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="50sp"
+                android:text="@string/login"
+                app:font="extrabold.ttf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <vn.zikoteam.ziko.customui.CustomEditText
+                            android:id="@+id/editEmail"
+                            android:layout_width="@dimen/width_login"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/email"
+                            android:textColor="@android:color/white"
+                            android:textColorHint="@android:color/white"
+                            android:textSize="@dimen/text_normal"
+                            app:font="bold.ttf" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <vn.zikoteam.ziko.customui.CustomEditText
+                            android:id="@+id/editPass"
+                            android:layout_width="@dimen/width_login"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/password"
+                            android:textColor="@android:color/white"
+                            android:textColorHint="@android:color/white"
+                            android:textSize="@dimen/text_normal"
+                            app:font="bold.ttf" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <vn.zikoteam.ziko.customui.CustomButton
+                        android:id="@+id/btnLogin"
+                        android:layout_width="@dimen/width_login"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_button_login"
+                        android:background="@drawable/bg_button_login"
+                        android:onClick="eventLogin"
+                        android:text="@string/login"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_normal"
+                        app:font="extrabold.ttf" />
+
+                    <vn.zikoteam.ziko.customui.CustomTextView
+                        android:id="@+id/tvForgotPass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/forgot_password"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_small"
+                        app:font="bold.ttf" />
+
+                </LinearLayout>
+
+                <vn.zikoteam.ziko.customui.CustomTextView
+                    android:id="@+id/tvSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/margin_bottom_login"
+                    android:onClick="eventSignUp"
+                    android:text="@string/sign_up_for_ziko"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_normal"
+                    app:font="bold.ttf" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
