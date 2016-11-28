@@ -5,6 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.tvNameToolbar)
     TextView tvNameToolbar;
+    @BindView(R.id.viewToolbar)
+    LinearLayout viewToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpToolbar() {
+        viewToolbar.setGravity(Gravity.CENTER);
         tvNameToolbar.setText(R.string.app_name);
+        tvNameToolbar.setTextSize(25.0f);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }

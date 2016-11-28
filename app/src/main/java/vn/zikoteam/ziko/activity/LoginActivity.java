@@ -1,15 +1,25 @@
 package vn.zikoteam.ziko.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +36,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvForgotPass;
     @BindView(R.id.imgBgHome)
     ImageView imgBgHome;
+    @BindView(R.id.pgLoading)
+    ProgressBar pgLoading;
 
     private ScaleImage mScaleImage;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +48,12 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            startIntent(MainActivity.class);
+        }
+
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -53,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLogin)
     public void eventLogin() {
-        startIntent(MainActivity.class);
+        doLogin();
     }
 
     @OnClick(R.id.tvSignUp)
@@ -61,18 +80,49 @@ public class LoginActivity extends AppCompatActivity {
         startIntent(SignupActivity.class);
     }
 
-    private void startIntent(Class<?> cls) {
-        Intent mIntent = new Intent(LoginActivity.this,cls);
-        startActivity(mIntent);
+    private void doLogin() {
+        String email = editEmail.getText().toString().trim();
+        final String password = editPass.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Email Error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Password Error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length() < 8){
+            Toast.makeText(getApplicationContext(), "Password Error > 8", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        pgLoading.setVisibility(View.VISIBLE);
+
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        pgLoading.setVisibility(View.GONE);
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, R.string.mess_authen_error,
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-        }
-        return super.onOptionsItemSelected(item);
+    private void startIntent(Class<?> cls) {
+        Intent mIntent = new Intent(LoginActivity.this, cls);
+        startActivity(mIntent);
+        finish();
     }
 }
 

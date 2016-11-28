@@ -7,6 +7,9 @@
     <dimen name="margin_bottom_login">20dp</dimen>
     <dimen name="margin_button_login">15dp</dimen>
     <dimen name="width_login">260dp</dimen>
-    <dimen name="text_toolbar">25sp</dimen>
+    <dimen name="text_toolbar">20sp</dimen>
     <dimen name="margin_addfood">10dp</dimen>
+    <dimen name="padding_ziko">16dp</dimen>
+    <dimen name="text_add">16sp</dimen>
+    <dimen name="text_food_small">13sp</dimen>
 </resources>

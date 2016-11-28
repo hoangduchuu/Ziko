@@ -24,10 +24,10 @@
             <vn.zikoteam.ziko.customui.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="50sp"
                 android:text="@string/sign_up"
                 android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="50sp"
                 app:font="extrabold.ttf" />
 
         </LinearLayout>
@@ -93,6 +93,7 @@
                             android:layout_width="@dimen/width_login"
                             android:layout_height="wrap_content"
                             android:hint="@string/email"
+                            android:inputType="textEmailAddress"
                             android:textColor="@android:color/white"
                             android:textColorHint="@android:color/white"
                             android:textSize="@dimen/text_normal"
@@ -160,4 +161,12 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pgLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateDrawable="@drawable/progress"/>
 </FrameLayout>

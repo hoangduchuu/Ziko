@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorCompo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <include layout="@layout/food_details_top" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <vn.zikoteam.ziko.customui.CustomEditText
+            android:id="@+id/editComment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:ellipsize="end"
+            android:gravity="top"
+            android:hint="@string/review_food"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:minLines="2"
+            android:padding="@dimen/margin_addfood"
+            android:scrollbars="vertical"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorAddFood"
+            android:textSize="@dimen/text_add"
+            app:font="regular.ttf" />
+
+        <LinearLayout
+            android:id="@+id/btnSend"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_send"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pgLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/progress"
+        android:visibility="gone" />
+</FrameLayout>

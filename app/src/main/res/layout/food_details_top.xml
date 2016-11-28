@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingBottom="20dp">
+
+    <ImageView
+        android:id="@+id/imgFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <vn.zikoteam.ziko.customui.CustomTextView
+            android:id="@+id/tvNameFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Bo xao hoa cai"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:font="regular.ttf" />
+
+        <vn.zikoteam.ziko.customui.CustomTextView
+            android:id="@+id/priceFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30000"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            app:font="bold.ttf" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <vn.zikoteam.ziko.customui.CustomButton
+                android:id="@+id/btnOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/bg_btn_order"
+                android:text="@string/order"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_small"
+                app:font="bold.ttf" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bg_farivote"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <vn.zikoteam.ziko.customui.CustomTextView
+                    android:id="@+id/tvFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_favorite"
+                    android:drawablePadding="8dp"
+                    android:text="1"
+                    android:textSize="@dimen/text_small"
+                    app:font="bold.ttf" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgAssig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_assignment" />
+
+            <vn.zikoteam.ziko.customui.CustomTextView
+                android:id="@+id/tvTalkAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgAssig"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Banh rat ngon , thom thi thoi chu mua ngay thoi nao moi nguoi oi ung ho di "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_small"
+                app:font="regular.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_location_small" />
+
+            <vn.zikoteam.ziko.customui.CustomTextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgLocation"
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Nguyen Trai , P 10 , Quan 1, thanh pho Ho Chi Minh"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_small"
+                app:font="regular.ttf" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

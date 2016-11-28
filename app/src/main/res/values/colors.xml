@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#ed3554</color>
     <color name="colorPrimaryDark">#d32a57</color>
-    <color name="colorAccent">#4CAF50</color>
+    <color name="colorAccent">#ed3554</color>
+    <color name="colorBgZiko">#F5F5F5</color>
+    <color name="colorCompo">#EEEEEE</color>
+    <color name="colorAddFood">#BDBDBD</color>
 </resources>

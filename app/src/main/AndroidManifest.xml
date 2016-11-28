@@ -3,6 +3,8 @@
     package="vn.zikoteam.ziko">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -12,12 +14,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +26,20 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.Authentication">
-        </activity>
+            android:theme="@style/AppTheme.Authentication" />
         <activity
             android:name=".activity.SignupActivity"
-            android:theme="@style/AppTheme.Authentication">
-
-        </activity>
+            android:theme="@style/AppTheme.Authentication" />
+        <activity
+            android:name=".activity.AddFoodActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.FoodDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.UserDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

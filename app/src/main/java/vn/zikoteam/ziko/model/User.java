@@ -1,9 +1,16 @@
 package vn.zikoteam.ziko.model;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by dk-darkness on 21/11/2016.
  */
 
+@IgnoreExtraProperties
 public class User {
     private String id;
     private String name;
@@ -16,66 +23,49 @@ public class User {
     public User() {
     }
 
-    public User(String id, String name, String phoneNumber, String email) {
+    public User(String id, String name, String phoneNumber, String email, String avatar, String address) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.avatar = avatar;
+        this.address = address;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", getId());
+        result.put("name", getName());
+        result.put("phoneNumber", getPhoneNumber());
+        result.put("email", getEmail());
+        result.put("avatar", getAvatar());
+        result.put("address", getAddress());
+
+        return result;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }

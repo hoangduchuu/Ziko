@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,12 +23,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vn.zikoteam.ziko.R;
 import vn.zikoteam.ziko.customui.ScaleImage;
 import vn.zikoteam.ziko.model.User;
+import vn.zikoteam.ziko.other.Constant;
 
 public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.editName)
@@ -41,14 +47,13 @@ public class SignupActivity extends AppCompatActivity {
     EditText editRePass;
     @BindView(R.id.imgBgHome)
     ImageView imgBgHome;
+    @BindView(R.id.pgLoading)
+    ProgressBar pgLoading;
 
     private ScaleImage mScaleImage;
 
-    private User mUser;
     private FirebaseAuth mFirebaseAuth;
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
-    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +64,14 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
+        setUpFirebase();
         setImageBg();
         setUpEditText();
+    }
 
+    private void setUpFirebase() {
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     private void setImageBg() {
@@ -77,9 +86,7 @@ public class SignupActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSignIn)
     public void eventSignIn(View v) {
-        showProgressDialog();
-        createNewAccount(editEmail.getText().toString(),
-                editPass.getText().toString());
+        createNewAccount();
     }
 
     @OnClick(R.id.tvIntentLogin)
@@ -90,61 +97,71 @@ public class SignupActivity extends AppCompatActivity {
     private void intentLogin() {
         Intent mIntent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(mIntent);
+        finish();
     }
 
-    private void setUpUser() {
-        mUser = new User();
-        mUser.setName(editName.getText().toString());
-        mUser.setPhoneNumber(editPhoneNumber.getText().toString());
-        mUser.setEmail(editEmail.getText().toString());
-        mUser.setPassword(editPass.getText().toString());
+    private void showMessageValidData(String message) {
+        Toast.makeText(SignupActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private void createNewAccount(String email, String password) {
-        setUpUser();
+    private void createNewAccount() {
+        final String name = editName.getText().toString().trim();
+        final String email = editEmail.getText().toString().trim();
+        final String phoneNumber = editPhoneNumber.getText().toString().trim();
+        String password = editPass.getText().toString().trim();
+        String confirmPass = editRePass.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name)) {
+            showMessageValidData("Name Error");
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            showMessageValidData("Email Error");
+            return;
+        }
+        if (TextUtils.isEmpty(phoneNumber)) {
+            showMessageValidData("PhoneNumber Error");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            showMessageValidData("Password Error");
+            return;
+        }
+        if (TextUtils.isEmpty(confirmPass)) {
+            showMessageValidData("Confirm Password Error");
+            return;
+        }
+        if (!password.equals(confirmPass)) {
+            showMessageValidData("Confirm Password Error");
+            return;
+        }
+
+        pgLoading.setVisibility(View.VISIBLE);
         mFirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        hideProgressDialog();
+                        pgLoading.setVisibility(View.GONE);
 
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignupActivity.this, R.string.mess_authen_error,
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            onAuthenticationSucess(task.getResult().getUser());
+                            FirebaseUser firebaseUser = task.getResult().getUser();
+                            saveNewUser(firebaseUser.getUid(), name, phoneNumber, email);
+                            intentLogin();
                         }
                     }
                 });
     }
 
-    private void onAuthenticationSucess(FirebaseUser firebaseUser) {
-        saveNewUser(firebaseUser.getUid(), mUser.getName(),
-                mUser.getPhoneNumber(), mUser.getEmail());
-        intentLogin();
-    }
-
     private void saveNewUser(String userId, String name, String phoneNumber, String email) {
-        User user = new User(userId, name, phoneNumber, email);
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference();
-        mDatabaseReference.child("users").child(userId).setValue(user);
-    }
+        User mUser = new User(userId, name, phoneNumber, email, Constant.BASE_URL_IMAGE, "");
+        Map<String, Object> userValue = mUser.toMap();
 
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
+        Map<String, Object> childUpdate = new HashMap<>();
+        childUpdate.put("/" + Constant.FB_KEY_USER + "/" +userId , userValue);
+        mDatabaseReference.updateChildren(childUpdate);
     }
 
 
