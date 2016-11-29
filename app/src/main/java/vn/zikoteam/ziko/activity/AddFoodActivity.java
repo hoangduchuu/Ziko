@@ -98,7 +98,6 @@ public class AddFoodActivity extends AppCompatActivity {
     private void setUpFirebase() {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mFirebaseUser.getPhotoUrl();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 

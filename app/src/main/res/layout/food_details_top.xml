@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:paddingBottom="20dp">
@@ -10,7 +11,8 @@
     <ImageView
         android:id="@+id/imgFood"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
         android:layout_marginBottom="20dp" />
 
     <LinearLayout
@@ -107,7 +109,7 @@
                 android:layout_toRightOf="@+id/imgAssig"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Banh rat ngon , thom thi thoi chu mua ngay thoi nao moi nguoi oi ung ho di "
+                tools:text="Banh rat ngon , thom thi thoi chu mua ngay thoi nao moi nguoi oi ung ho di "
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small"
                 app:font="regular.ttf" />
@@ -136,7 +138,7 @@
                 android:drawablePadding="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Nguyen Trai , P 10 , Quan 1, thanh pho Ho Chi Minh"
+                tools:text="Nguyen Trai , P 10 , Quan 1, thanh pho Ho Chi Minh"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small"
                 app:font="regular.ttf" />

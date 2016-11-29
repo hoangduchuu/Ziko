@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import vn.zikoteam.ziko.R;
+import vn.zikoteam.ziko.customui.CircleTransform;
 import vn.zikoteam.ziko.model.Food;
 
 /**
@@ -37,7 +38,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder {
 
     public void bindToPost(Food food, View.OnClickListener starClickListener) {
         Picasso.with(itemView.getContext()).load(food.getImageFood()).into(imgFood);
-        Picasso.with(itemView.getContext()).load(food.getUserAvatar()).into(imgAvatar);
+        Picasso.with(itemView.getContext()).load(food.getUserAvatar()).transform(new CircleTransform()).into(imgAvatar);
         tvNameFood.setText(food.getNameFood());
         tvAddress.setText(food.getAddressFood());
         if (food.getFavoriteFood() == 0) {

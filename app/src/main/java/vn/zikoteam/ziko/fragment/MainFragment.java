@@ -58,7 +58,7 @@ public abstract class MainFragment extends Fragment {
         mAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.item_food,
                 FoodViewHolder.class, foodQuery) {
             @Override
-            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
+            protected void populateViewHolder(FoodViewHolder viewHolder, final Food model, int position) {
                 final DatabaseReference postRef = getRef(position);
                 final String postKey = postRef.getKey();
 
@@ -75,7 +75,7 @@ public abstract class MainFragment extends Fragment {
                     @Override
                     public void onClick(View starView) {
                         Intent intent = new Intent(getActivity(), UserDetailsActivity.class);
-                        intent.putExtra(Constant.EXTRA_USER_KEY, postKey);
+                        intent.putExtra(Constant.EXTRA_USER_KEY, model.getIdUser());
                         startActivity(intent);
                     }
                 });
