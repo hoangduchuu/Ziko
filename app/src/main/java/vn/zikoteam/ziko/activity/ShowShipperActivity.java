@@ -96,9 +96,9 @@ public class ShowShipperActivity extends AppCompatActivity {
                 viewHolder.bindToPost(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
-                        Intent intent = new Intent(ShowShipperActivity.this, UserDetailsActivity.class);
-                        intent.putExtra(Constant.EXTRA_USER_KEY, postKey);
-                        startActivity(intent);
+//                        Intent intent = new Intent(ShowShipperActivity.this, UserDetailsActivity.class);
+//                        intent.putExtra(Constant.EXTRA_USER_KEY, postKey);
+//                        startActivity(intent);
                     }
                 });
                 pgLoading.setVisibility(View.GONE);
