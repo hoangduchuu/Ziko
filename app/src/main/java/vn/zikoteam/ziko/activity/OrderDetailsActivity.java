@@ -113,7 +113,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                     editStatus.setText("Giao dich thanh cong");
                 }
 
-                if(mOrder.getConnentReview()==""){
+                if(mOrder.getConnentReview() == "" || mOrder.getConnentReview() == null){
                     vComment.setVisibility(View.GONE);
                 }else {
                     vComment.setVisibility(View.VISIBLE);
