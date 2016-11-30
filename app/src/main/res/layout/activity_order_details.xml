@@ -196,7 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Thong tin Shipper"
+                        android:text="Shipper info "
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/text_normal"
                         app:font="bold.ttf" />

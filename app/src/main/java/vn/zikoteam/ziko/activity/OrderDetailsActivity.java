@@ -1,10 +1,9 @@
 package vn.zikoteam.ziko.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -26,10 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vn.zikoteam.ziko.R;
 import vn.zikoteam.ziko.customui.CircleTransform;
-import vn.zikoteam.ziko.model.Food;
 import vn.zikoteam.ziko.model.Order;
-import vn.zikoteam.ziko.model.Shipper;
-import vn.zikoteam.ziko.model.User;
 import vn.zikoteam.ziko.other.Constant;
 
 public class OrderDetailsActivity extends AppCompatActivity {
@@ -108,9 +104,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 Picasso.with(OrderDetailsActivity.this).load(mOrder.getAvatarShipper())
                         .transform(new CircleTransform()).into(imgAvatarShipper);
                 if(mOrder.getStatus() == 1){
-                    editStatus.setText("Dang van chuyen");
+                    editStatus.setText("Shipping");
                 }else {
-                    editStatus.setText("Giao dich thanh cong");
+                    editStatus.setText("Transaction Successful ");
                 }
 
                 if(mOrder.getConnentReview() == "" || mOrder.getConnentReview() == null){
