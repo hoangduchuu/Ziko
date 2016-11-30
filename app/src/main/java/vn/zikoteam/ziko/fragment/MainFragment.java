@@ -102,10 +102,6 @@ public abstract class MainFragment extends Fragment {
         }
     }
 
-    public String getUid() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
-
     public abstract Query getQuery(DatabaseReference databaseReference);
 
     public abstract int getLayoutFragment();

@@ -1,6 +1,7 @@
 package vn.zikoteam.ziko.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import vn.zikoteam.ziko.R;
 import vn.zikoteam.ziko.customui.CircleTransform;
 import vn.zikoteam.ziko.customui.SimpleDividerItemDecoration;
@@ -64,7 +66,6 @@ public class FoodDetailsActivity extends AppCompatActivity {
     @BindView(R.id.btnSend)
     View btnSend;
 
-
     private DatabaseReference mFoodReference;
     private DatabaseReference mCommentsReference;
     private ValueEventListener mPostListener;
@@ -89,6 +90,13 @@ public class FoodDetailsActivity extends AppCompatActivity {
                 postComment();
             }
         });
+    }
+
+    @OnClick(R.id.btnOrder)
+    public void eventOrderFood(View view){
+        Intent intent = new Intent(FoodDetailsActivity.this, OrderActivity.class);
+        intent.putExtra(Constant.EXTRA_FOOD_ORDER_KEY, getKeyFood());
+        startActivity(intent);
     }
 
     private void setUpFirebase() {

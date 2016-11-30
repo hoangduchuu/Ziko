@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
@@ -33,7 +34,8 @@ public class StoreFragment extends MainFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-        return databaseReference.child(Constant.FB_KEY_USER_FOOD).child(getUid());
+        return databaseReference.child(Constant.FB_KEY_USER_FOOD)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
     @Override

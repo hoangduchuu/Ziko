@@ -17,8 +17,13 @@
     <string name="add_food_in_store">Add Food in Store.</string>
     <string name="name_food">Name Food</string>
     <string name="lets_talk">Let\'s talk about food</string>
+    <string name="lets_talk_shipper">Let\'s talk about shipper</string>
     <string name="add_price">Add Price</string>
     <string name="order">Order</string>
     <string name="ok">OK</string>
     <string name="review_food">Review Food !!</string>
+    <string name="add_shipper">Add Shipper</string>
+    <string name="add_order_food">Add Order</string>
+    <string name="review_shipper">Review Shipper</string>
+    <string name="review_shipper_text">Review Shipper</string>
 </resources>

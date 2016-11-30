@@ -34,8 +34,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_image" />
+                    android:scaleType="centerCrop" />
 
                 <vn.zikoteam.ziko.customui.CustomTextView
                     android:id="@+id/tvName"
@@ -64,10 +63,16 @@
             </FrameLayout>
 
             <LinearLayout
-                android:id="@+id/vShowList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listFoodFriend"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
         </LinearLayout>

@@ -58,6 +58,7 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_small"
+                android:onClick="eventOrderFood"
                 app:font="bold.ttf" />
 
             <LinearLayout
